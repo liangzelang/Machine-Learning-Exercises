@@ -13,7 +13,10 @@ J = 0;
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
 
-
+% ========== Liangzelang Code Begin ================% 
+sqrErrorMulti = (X*theta - y).^2;
+J = 1/(2*m)*sum(sqrErrorMulti);
+% ========== Liangzelang Code End   ================%   
 
 
 

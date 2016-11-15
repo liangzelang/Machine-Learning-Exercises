@@ -18,7 +18,11 @@ for iter = 1:num_iters
     %
 
 
-
+% ========== Liangzelang Code Begin ================%  
+theta(1) = theta(1) - alpha*(1/m)*sum((X*theta-y).*X(:,1));
+theta(2) = theta(2) - alpha*(1/m)*sum((X*theta-y).*X(:,2));
+theta(3) = theta(3) - alpha*(1/m)*sum((X*theta-y).*X(:,3));
+% ========== Liangzelang Code End   ================%   
 
 
 

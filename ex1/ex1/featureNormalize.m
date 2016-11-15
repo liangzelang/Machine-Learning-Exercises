@@ -24,15 +24,15 @@ sigma = zeros(1, size(X, 2));
 %               each feature. 
 %
 % Hint: You might find the 'mean' and 'std' functions useful.
-%       
 
-
-
-
-
-
-
-
+% ========== Liangzelang Code Begin ================%      
+% mean value
+mu = mean(X)
+sigma = std(X)
+for i=1:size(X,2)
+   X(:,i) = (X(:,i)-mu(1,i))/sigma(1,i);
+end
+% ========== Liangzelang Code End ================%    
 
 % ============================================================
 
