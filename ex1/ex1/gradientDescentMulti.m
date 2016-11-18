@@ -19,10 +19,19 @@ for iter = 1:num_iters
 
 
 % ========== Liangzelang Code Begin ================%  
-theta(1) = theta(1) - alpha*(1/m)*sum((X*theta-y).*X(:,1));
-theta(2) = theta(2) - alpha*(1/m)*sum((X*theta-y).*X(:,2));
-theta(3) = theta(3) - alpha*(1/m)*sum((X*theta-y).*X(:,3));
+
+%theta(1,1) = theta(1,1) - alpha*(1/m)*sum((X*theta-y).*X(:,1));
+%theta(2,1) = theta(2,1) - alpha*(1/m)*sum((X*theta-y).*X(:,2));
+%theta(3,1) = theta(3,1) - alpha*(1/m)*sum((X*theta-y).*X(:,3));
+ 
 % ========== Liangzelang Code End   ================%   
+tmp_thetap=zeros(size(X,2),1);
+    for i=1:size(X,2)
+      tmp_thetap(i,1)=theta(i,1)-alpha*(1/m)*sum((X*theta-y).*X(:,i));
+    end
+    for j=1:size(X,2)
+      theta(j,1)=tmp_thetap(j,1);
+    end
 
 
 

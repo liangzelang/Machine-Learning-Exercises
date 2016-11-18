@@ -27,10 +27,10 @@ sigma = zeros(1, size(X, 2));
 
 % ========== Liangzelang Code Begin ================%      
 % mean value
-mu = mean(X)
-sigma = std(X)
+mu=mean(X);
+sigma=std(X);
 for i=1:size(X,2)
-   X(:,i) = (X(:,i)-mu(1,i))/sigma(1,i);
+ X(:,i)=(X(:,i)-mu(1,i))/sigma(1,i);
 end
 % ========== Liangzelang Code End ================%    
 
