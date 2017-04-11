@@ -62,6 +62,80 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% % add 1 to X
+% 
+% aOne = [ones(size(X,1),1) X]';  %401*500
+% 
+% zTwo = Theta1 * aOne;  %25*500
+% aTwo = sigmoid(zTwo);
+% aTwo = [ones(1, size(aTwo, 2)); aTwo];  % 26*500
+% 
+% zThree = Theta2*aTwo;   % 10*500
+% aThree = sigmoid(zThree);  % h(x)  10*500
+% 
+% vecy = zeros(m, num_labels);
+% for i = 1:m
+%    vecy(i, y(i,1)) = 1;  % 500*10
+% end
+% 
+% 
+% for i = 1:m
+%    tmp = 0;
+%    for k = 1:num_labels
+%         tmp = tmp + (-vecy(i,k)*log(aThree(k,i))-(1-vecy(i,k))*log(1- aThree(k,i)));   
+%    end
+%    J = J + tmp;
+% end
+% 
+% J = 1/m*J;
+% J = J + lambda/(2*m)*(sum(sum(Theta1(:,[2:size(Theta1,2)]).^2))+sum(sum(Theta2(:,[2:size(Theta2,2)]).^2)));
+vecy=zeros(m,num_labels);
+for i=1:m
+  vecy(i,y(i,1))=1;
+end;
+for i=1:m
+  tmp=0;
+  tmpx=[ones(1,1) X(i,:)];
+  z2=tmpx*Theta1';
+  a2=sigmoid(z2);
+  a2=[ones(size(a2,1),1) a2];
+  z3=a2*Theta2';
+  a3=sigmoid(z3);
+  for j=1:num_labels
+	tmp=tmp+(-vecy(i,j)*log(a3(1,j))-(1-vecy(i,j))*log(1-a3(1,j)));
+	end;
+  J=J+tmp;
+end;
+J=J/m;
+J=J+lambda/(2*m)*(sum(sum((Theta1(:,[2:size(Theta1,2)])).^2))+sum(sum((Theta2(:,[2:size(Theta2,2)])).^2)));
+
+
+% grad
+for i = 1:m
+    tmpx = [ones(1,1) X(i,:)]; %1*401
+    z2 = tmpx*Theta1'; %1*25
+    a2 = sigmoid(z2);
+    a2 = [ones(size(a2,1),1) a2]; %1*26
+    z3 = a2*Theta2';  %1*10
+    a3 = sigmoid(z3);
+    %backpropatation
+    delta_3 = a3 - vecy(i,:);
+    sigGrad = [zeros(1,1) sigmoidGradient(z2)];
+    delta_2 = delta_3*Theta2.*sigGrad;
+    delta_2 = delta_2(1, [2:size(delta_2,2)]);% remove delta(2,0)
+    Theta2_grad = Theta2_grad + delta_3'*a2;
+    Theta1_grad = Theta1_grad + delta_2'*tmpx;
+end
+
+Theta1_grad = Theta1_grad./m;
+Theta2_grad = Theta2_grad./m;
+
+Theta1_tmp = Theta1(:, [2:size(Theta1,2)]);
+Theta2_tmp = Theta2(:, [2:size(Theta2,2)]);
+Theta1_tmp = [zeros(size(Theta1,1),1) Theta1_tmp];
+Theta2_tmp = [zeros(size(Theta2,1),1) Theta2_tmp];
+Theta1_grad = Theta1_grad + lambda/m*Theta1_tmp;
+Theta2_grad = Theta2_grad + lambda/m*Theta2_tmp;
 
 
 

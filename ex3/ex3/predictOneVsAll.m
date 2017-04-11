@@ -29,10 +29,24 @@ X = [ones(m, 1) X];
 %       are in rows, then, you can use max(A, [], 2) to obtain the max 
 %       for each row.
 %       
+%sig = sigmoid(X*all_theta');  %求得所有数据每个分类器预测的概率
+
+[j,i] = max(sigmoid(X*all_theta'),[],2);
+for k = 1:m
+    p(k,1) = i(k,1);
+end
 
 
-
-
+% sig=sigmoid(X*all_theta');
+% for i=1:m
+%   tmp=1;
+%   for j=2:num_labels
+%     if sig(i,j)>sig(i,tmp)
+% 	  tmp=j;
+% 	end
+%   end
+%   p(i,1)=tmp;
+% end
 
 
 

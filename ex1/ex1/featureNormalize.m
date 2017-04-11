@@ -1,4 +1,4 @@
-function [X_norm, mu, sigma] = featureNormalize(X)
+function [X, mu, sigma] = featureNormalize(X)
 %FEATURENORMALIZE Normalizes the features in X 
 %   FEATURENORMALIZE(X) returns a normalized version of X where
 %   the mean value of each feature is 0 and the standard deviation
@@ -6,8 +6,8 @@ function [X_norm, mu, sigma] = featureNormalize(X)
 %   working with learning algorithms.
 
 % You need to set these values correctly
-X_norm = X;
-mu = zeros(1, size(X, 2));
+%X_norm = X;   %觉得这里应该有问题吧,就是这里他妈的有问题
+mu = zeros(1, size(X, 2));   % size(X, 2)返回X的列数
 sigma = zeros(1, size(X, 2));
 
 % ====================== YOUR CODE HERE ======================
@@ -24,15 +24,12 @@ sigma = zeros(1, size(X, 2));
 %               each feature. 
 %
 % Hint: You might find the 'mean' and 'std' functions useful.
-
-% ========== Liangzelang Code Begin ================%      
-% mean value
-mu=mean(X);
-sigma=std(X);
-for i=1:size(X,2)
- X(:,i)=(X(:,i)-mu(1,i))/sigma(1,i);
+%       
+mu = mean(X)
+sigma = std(X)
+for i = 1:size(X,2)
+    X(:,i) = (X(:,i)-mu(1,i))/sigma(1,i);
 end
-% ========== Liangzelang Code End ================%    
 
 % ============================================================
 

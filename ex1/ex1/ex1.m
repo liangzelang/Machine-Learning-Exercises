@@ -7,10 +7,10 @@
 %  linear exercise. You will need to complete the following functions 
 %  in this exericse:
 %
-%     warmUpExercise.m （*）
-%     plotData.m        (*)  
-%     gradientDescent.m (*)
-%     computeCost.m     (*)
+%     warmUpExercise.m
+%     plotData.m
+%     gradientDescent.m
+%     computeCost.m
 %     gradientDescentMulti.m
 %     computeCostMulti.m
 %     featureNormalize.m
@@ -52,8 +52,7 @@ pause;
 %% =================== Part 3: Gradient descent ===================
 fprintf('Running Gradient Descent ...\n')
 
-X = [ones(m, 1), data(:,1)]; % Add a column of ones to x    
-%lzl 这一列主要是在X加一行，主要方便之后的theta更新
+X = [ones(m, 1), data(:,1)]; % Add a column of ones to x
 theta = zeros(2, 1); % initialize fitting parameters
 
 % Some gradient descent settings
@@ -64,7 +63,7 @@ alpha = 0.01;
 computeCost(X, y, theta)
 
 % run gradient descent
-theta = gradientDescent(X, y, theta, alpha, iterations);    
+theta = gradientDescent(X, y, theta, alpha, iterations);
 
 % print theta to screen
 fprintf('Theta found by gradient descent: ');
@@ -91,7 +90,7 @@ pause;
 fprintf('Visualizing J(theta_0, theta_1) ...\n')
 
 % Grid over which we will calculate J
-theta0_vals = linspace(-10, 10, 100);
+theta0_vals = linspace(-10, 10, 100);   %generates N points between X1 and X2.
 theta1_vals = linspace(-1, 4, 100);
 
 % initialize J_vals to a matrix of 0's

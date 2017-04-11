@@ -11,10 +11,7 @@ theta = zeros(size(X, 2), 1);
 %
 
 % ---------------------- Sample Solution ----------------------
-% ========== Liangzelang Code Begin ================% 
-theta = inv(X'*X)*X'*y;
-% ========== Liangzelang Code End   ================%   
-
+theta = pinv(X'*X)*X'*y;
 
 
 % -------------------------------------------------------------

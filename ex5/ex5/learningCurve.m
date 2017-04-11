@@ -52,7 +52,12 @@ error_val   = zeros(m, 1);
 %
 
 % ---------------------- Sample Solution ----------------------
-
+% 这里的X是已经添加了偏置量
+for i = 1:m
+    [theta] = trainLinearReg(X(1:i,:), y(1:i, :), lambda);
+    error_train(i,1) = linearRegCostFunction(X(1:i, :), y(1:i,:), theta, 0);  %计算i个训练集的误差
+    error_val(i,1) = linearRegCostFunction(Xval, yval, theta, 0);  %这个是计算整个验证集的误差
+end
 
 
 

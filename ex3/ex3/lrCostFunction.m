@@ -36,14 +36,31 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+% temp = 0;
+% for i = 1:m
+%     temp = temp + (-y(i,:)*log(sigmoid(X(i,:)*theta))-(1-y(i,:))*log(1-sigmoid(X(i,:)*theta)));
+% end
+% tempTheta = sum(theta.^2)*lambda/(2*m);
+% J = temp/m + tempTheta;
+% 
+% for j = 2:n
+%    grad(j) = sum((sigmoid(X*theta)-y).* X(:,j))/m + lambda/m*theta(j);  
+% end
+% grad(1) = 1/m*sum((sigmoid(X*theta)-y).*X(:,1));
 
 
-
-
-
-
-
-
+% sig=sigmoid(X*theta);
+% J=1/m*sum(-log(sig).*y+log(ones(m,1)-sigmoid(X*theta)).*y-log(ones(m,1)-sigmoid(X*theta)))+lambda/(2*m)*sum((theta([2:size(theta,1)],:)).^2);
+% tmp=theta;
+% tmp(1)=0;
+% grad=grad+1/m*(X'*(sig-y))+lambda/m*tmp;
+sig = sigmoid(X*theta);
+%J = 1/m*(sum(-log(sig - y).*y-log(ones(m,1)-log(sig - y)).*(ones(m,1)-y))) + lambda/(2*m)*sum((theta([2:size(theta,1)],:)).^2);
+J = 1/m*(sum(-log(sig).*y-log(ones(m,1)-sig).*(ones(m,1)-y))) + lambda/(2*m)*sum((theta([2:size(theta,1)],:)).^2);
+%J=1/m*sum(-log(sig).*y+log(ones(m,1)-sigmoid(X*theta)).*y-log(ones(m,1)-sigmoid(X*theta)))+lambda/(2*m)*sum((theta([2:size(theta,1)],:)).^2);
+tmp = theta;
+tmp(1) = 0;
+grad = grad + 1/m*(X'*(sig-y)) + 1/m*lambda*tmp;
 
 % =============================================================
 

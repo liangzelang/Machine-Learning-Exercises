@@ -83,6 +83,7 @@ pause;
 
 %  Train linear regression with lambda = 0
 lambda = 0;
+Jval = 0;
 [theta] = trainLinearReg([ones(m, 1) X], y, lambda);
 
 %  Plot fit over the data
@@ -92,7 +93,6 @@ ylabel('Water flowing out of the dam (y)');
 hold on;
 plot(X, [ones(m, 1) X]*theta, '--', 'LineWidth', 2)
 hold off;
-
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
@@ -164,7 +164,7 @@ pause;
 %  lambda to see how the fit and learning curve change.
 %
 
-lambda = 0;
+lambda = 3;
 [theta] = trainLinearReg(X_poly, y, lambda);
 
 % Plot training data and fit

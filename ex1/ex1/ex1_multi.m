@@ -10,10 +10,10 @@
 %  You will need to complete the following functions in this 
 %  exericse:
 %
-%     warmUpExercise.m （*）
-%     plotData.m        (*)  
-%     gradientDescent.m (*)
-%     computeCost.m     (*)
+%     warmUpExercise.m
+%     plotData.m
+%     gradientDescent.m
+%     computeCost.m
 %     gradientDescentMulti.m
 %     computeCostMulti.m
 %     featureNormalize.m
@@ -82,8 +82,8 @@ X = [ones(m, 1) X];
 fprintf('Running gradient descent ...\n');
 
 % Choose some alpha value
-alpha = 0.00000015;        %lzl 这里需要自己根据迭代次数和cost function的关系调整学习因子，具体调整方法
-num_iters = 50;
+alpha = 0.15;
+num_iters = 500;
 
 % Init Theta and Run Gradient Descent 
 theta = zeros(3, 1);
@@ -105,8 +105,8 @@ fprintf('\n');
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
 
-price = [1 (abs(1650-mu(1,1))/sigma(1,1)) (abs(3-mu(1,2)/sigma(1,2)))]*theta; % lzl 修改此处，预测房价 You should change this
-
+ % You should change this
+price = [1  ([1650 3]-mu)./sigma] * theta;
 
 % ============================================================
 
@@ -150,7 +150,7 @@ fprintf('\n');
 
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
-price = 1*theta(1)+1650*theta(2)+3*theta(3); % You should change this
+price = [1 1650 3]*theta; % You should change this
 
 
 % ============================================================
