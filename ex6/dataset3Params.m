@@ -23,6 +23,30 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+parameter_list=[0.01 0.03 0.1 0.3 1 3 10 30]';
+J=ones(8,8);
+for i=1:size(parameter_list,1)
+  C=parameter_list(i,1);
+  for j=1:size(parameter_list,1)
+    sigma=parameter_list(j,1);
+    m=svmTrain(X,y,C,@(x1,x2)gaussianKernel(x1,x2,sigma));   %得到SVM训练后的模型
+	predictions=svmPredict(m,Xval);   %得到模型的Validation集合的预测值
+	mean_pred_error=mean(double(predictions~=yval));
+	J(i,j)=mean_pred_error;
+  end;
+end;
+min_c=1;
+min_s=1;
+for i=1:size(parameter_list,1)
+  for j=1:size(parameter_list,1)
+    if J(i,j)<J(min_c,min_s)
+	  min_c=i;
+	  min_s=j;
+	end;
+  end;
+end;
+C=parameter_list(min_c,1);
+sigma=parameter_list(min_s,1);
 
 
 
