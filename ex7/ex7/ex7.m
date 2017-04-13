@@ -119,7 +119,7 @@ img_size = size(A);
 % Reshape the image into an Nx3 matrix where N = number of pixels.
 % Each row will contain the Red, Green and Blue pixel values
 % This gives us our dataset matrix X that we will use K-Means on.
-X = reshape(A, img_size(1) * img_size(2), 3);
+X = reshape(A, img_size(1) * img_size(2), 3);  %A 原本是一个3维数组，这样变成2维
 
 % Run your K-Means algorithm on this data
 % You should try different values of K and max_iters here
@@ -151,7 +151,7 @@ idx = findClosestCentroids(X, centroids);
 % Essentially, now we have represented the image X as in terms of the
 % indices in idx. 
 
-% We can now recover the image from the indices (idx) by mapping each pixel
+% We can now recover the image from the indices ( by mapping each pixel
 % (specified by it's index in idx) to the centroid value
 X_recovered = centroids(idx,:);
 
@@ -160,7 +160,7 @@ X_recovered = reshape(X_recovered, img_size(1), img_size(2), 3);
 
 % Display the original image 
 subplot(1, 2, 1);
-imagesc(A); 
+image(A); 
 title('Original');
 
 % Display compressed image side by side

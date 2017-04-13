@@ -17,8 +17,8 @@ colormap(gray);
 example_height = (n / example_width);
 
 % Compute number of items to display
-display_rows = floor(sqrt(m));
-display_cols = ceil(m / display_rows);
+display_rows = floor(sqrt(m)); % 小于或者等于
+display_cols = ceil(m / display_rows); %大于或者等于
 
 % Between images padding
 pad = 1;
